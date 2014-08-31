@@ -1,7 +1,9 @@
 require 'active_record'
 require 'multi_connection'
 
-ActiveRecord::Base.extend MultiConnection
+class ActiveRecord::Base
+  include MultiConnection
+end
 ActiveRecord::Base.configurations = {
   'default' => { adapter: 'sqlite3', database: 'default' },
   'db2' => { adapter: 'sqlite3', database: 'db2' },
