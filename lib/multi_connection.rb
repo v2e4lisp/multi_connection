@@ -5,10 +5,10 @@ module MultiConnection
     base.extend self
   end
 
-  def switch_to(spec_name)
-    self.establish_connection(spec_name)
+  def switch_to(spec)
+    establish_connection spec
     yield self
   ensure
-    self.remove_connection
+    remove_connection
   end
 end
