@@ -20,7 +20,7 @@ module MultiConnection
       ghost_connection_handler.clear_all_connections!
     end
 
-    # spec - a symbole or string
+    # spec - a symbol or string
     def switch_to(spec)
       old_handler = connection_handler
       self.connection_handler = ghost_connection_handler
