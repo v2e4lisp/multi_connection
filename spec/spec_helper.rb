@@ -5,8 +5,8 @@ class ActiveRecord::Base
   include MultiConnection
 end
 ActiveRecord::Base.configurations = {
-  'default' => { adapter: 'sqlite3', database: 'default' },
-  'db2' => { adapter: 'sqlite3', database: 'db2' },
+  'default' => { adapter: 'sqlite3', database: 'default', timeout: 100 },
+  'db2' => { adapter: 'sqlite3', database: 'db2', timeout: 100 },
 }
 
 class User < ActiveRecord::Base; end
