@@ -16,8 +16,6 @@ ActiveRecord::Base.configurations = {
 
 class User < ActiveRecord::Base; end
 
-puts ActiveRecord.version
-
 def setup_db
   ActiveRecord::Base.establish_connection :db2
   ActiveRecord::Base.connection.execute('DROP TABLE IF EXISTS users')
