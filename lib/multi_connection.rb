@@ -26,10 +26,6 @@ module MultiConnection
       end
 
       def switch_to(spec)
-        
-      end
-
-      def switch_to(spec)
         old_handler = connection_handler
         self.connection_handler = ghost_connection_handler
         self.connection_handler.spec = spec
