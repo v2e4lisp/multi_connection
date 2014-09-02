@@ -57,11 +57,7 @@ module MultiConnection
       end
 
       def establish_connection(owner, spec)
-        resolver = ::ActiveRecord::ConnectionAdapters::ConnectionSpecification::Resolver.new(
-          ::ActiveRecord::Base.configurations)
-
-        _spec = resolver.spec(spec)
-        @spec_to_pool[spec] = ::ActiveRecord::ConnectionAdapters::ConnectionPool.new(_spec)
+        @spec_to_pool[self.spec] = ::ActiveRecord::ConnectionAdapters::ConnectionPool.new(spec)
       end
 
       def remove_connection(spec)
@@ -73,7 +69,7 @@ module MultiConnection
       end
 
       def retrieve_connection_pool(klass=nil)
-        @spec_to_pool[spec] || establish_connection(klass, spec)
+        @spec_to_pool[spec] || ::ActiveRecord::Base.establish_connection(spec)
       end
     end
 
