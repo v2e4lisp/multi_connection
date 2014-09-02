@@ -2,14 +2,17 @@ require 'active_record'
 require 'multi_connection'
 
 class ActiveRecord::Base
-  include MultiConnection
+  include MultiConnection::ConnectionHandling
 end
+
 ActiveRecord::Base.configurations = {
   'default' => { adapter: 'sqlite3', database: 'default', timeout: 100 },
   'db2' => { adapter: 'sqlite3', database: 'db2', timeout: 100 },
 }
 
 class User < ActiveRecord::Base; end
+
+puts ActiveRecord.version
 
 def setup_db
   ActiveRecord::Base.establish_connection :db2
