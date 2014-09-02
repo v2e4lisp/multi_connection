@@ -2,7 +2,11 @@ require 'active_record'
 require 'multi_connection'
 
 class ActiveRecord::Base
-  include MultiConnection::ConnectionHandling
+  extend MultiConnection::ConnectionHandling
+end
+
+def switch_to(spec, &block)
+  ActiveRecord::Base.switch_to(spec, &block)
 end
 
 ActiveRecord::Base.configurations = {
