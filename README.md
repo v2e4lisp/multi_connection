@@ -20,8 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
+### API
+
+- `switch_to(:database)` database should be defined in you `database.yml` file.
+- alias `open`
+
+### Example
+
 ```ruby
-ActiveRecord::Base.switch(:production_slave) {
+ActiveRecord::Base.switch_to(:production_slave) {
+  User.find(1)
+}
+
+ActiveRecord::Base.open(:production_slave) {
   User.find(1)
 }
 ```
