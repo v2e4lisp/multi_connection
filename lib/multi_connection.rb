@@ -44,6 +44,7 @@ module MultiConnection
       self.connection_handler.spec = nil
       self.connection_handler = old_handler
     end
+    alias_method :open, :switch_to
 
     private
 
