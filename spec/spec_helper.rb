@@ -5,10 +5,6 @@ class ActiveRecord::Base
   extend MultiConnection::ConnectionHandling
 end
 
-def switch_to(spec, &block)
-  ActiveRecord::Base.switch_to(spec, &block)
-end
-
 ActiveRecord::Base.configurations = {
   'default' => { adapter: 'sqlite3', database: 'default', timeout: 100 },
   'db2' => { adapter: 'sqlite3', database: 'db2', timeout: 100 },
