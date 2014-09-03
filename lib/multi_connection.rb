@@ -1,6 +1,4 @@
 require "thread_safe"
-require "active_record"
-
 require "multi_connection/version"
 
 module MultiConnection
@@ -20,7 +18,23 @@ module MultiConnection
       ghost_connection_handler.clear_all_connections!
     end
 
+    # Connect to another database.
+    # And restore the previous connection at the end of the block.
+    #
     # spec - a symbol or string
+    #
+    # Note, #switch_to will change the connection handler which means
+    # all subsequent queries in that block will be sent to the new
+    # database.
+    #
+    #   ActiveRecord::Base.switch_to(:another_db) {
+    #     # query sent to another_db
+    #   }
+    #
+    # This is thread safe since connection_handler is local to current
+    # thread according to ActiveSupport::PerThreadRegistry.
+    # 
+    # Yield a block
     def switch_to(spec)
       old_handler = connection_handler
       self.connection_handler = ghost_connection_handler
@@ -52,7 +66,8 @@ module MultiConnection
       end
 
       def establish_connection(owner, spec)
-        @spec_to_pool[self.spec] = ::ActiveRecord::ConnectionAdapters::ConnectionPool.new(spec)
+        @spec_to_pool[self.spec] =
+          ::ActiveRecord::ConnectionAdapters::ConnectionPool.new(spec)
       end
 
       def remove_connection(spec)
@@ -71,5 +86,11 @@ module MultiConnection
     end
 
   end
+end
+
+begin
+  require 'rails'
+  require 'multi_connection/railtie'
+rescue LoadError
 end
 
