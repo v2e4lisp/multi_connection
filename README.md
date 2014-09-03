@@ -1,6 +1,6 @@
 # MultiConnection
 
-TODO: Write a gem description
+Multiple database connections for rails
 
 ## Installation
 
