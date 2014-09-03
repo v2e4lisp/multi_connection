@@ -22,3 +22,6 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Todo
+
+- [ ] `self.connection` should be thread safe
