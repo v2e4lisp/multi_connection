@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = MultiConnection::VERSION
   spec.authors       = ["wenjun.yan"]
   spec.email         = ["mylastnameisyan@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{rails multiple database connections}
+  spec.description   = %q{rails multiple database connections}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -24,6 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sqlite3"
 
   spec.add_dependency "activerecord", ">= 3.2.0"
-  spec.add_dependency "activesupport"
   spec.add_dependency "thread_safe"
 end
