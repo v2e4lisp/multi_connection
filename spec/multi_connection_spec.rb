@@ -19,6 +19,7 @@ RSpec.describe MultiConnection do
   it("should be thread safe") {
     Thread.new { switch_to(:db2) { User.create } }.join
     expect(User.count).to eq 0
+    expect(switch_to(:db2) { User.count }).to eq 1
   }
 
 end
