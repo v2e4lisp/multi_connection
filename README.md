@@ -20,8 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
-## Todo
-
-- [ ] `self.connection` should be thread safe
+```ruby
+ActiveRecord::Base.switch(:production_slave) {
+  User.find(1)
+}
+```
