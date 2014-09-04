@@ -89,9 +89,9 @@ module MultiConnection
   end
 end
 
-begin
-  require 'rails'
+if defined?(Rails)
   require 'multi_connection/railtie'
-rescue LoadError
+else
+  ::ActiveRecord::Base.extend ::MultiConnection::ConnectionHandling
 end
 
